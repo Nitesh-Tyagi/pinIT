@@ -1,6 +1,8 @@
 # pinIT
 pinIT is a django based text only forum which provides complete anonymity to it's users. pinIT does not ask for any personal information from it's users providing a safe platform to channel out your views and opinions.
+
 Recreating this project would require some experience in Django and python, along with basic knowledge of database management and frontend development.
+
 Migrations and Database have already been created.
 
 - src/trydjango is the project.
