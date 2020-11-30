@@ -1,0 +1,230 @@
+<!-- {{ request.user.is_authenticated }} -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+  <title>pinIT - post anonymously</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background-color: #2a3030;
+    }
+
+    .container {
+      width: 85%;
+      margin: 0 auto;
+    }
+
+    header::after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+
+    .header {
+      background: #1e2424;
+      margin-left: 0;
+      padding-left: 0;
+      position: fixed;
+      z-index: 1;
+      width: 100%;
+      box-shadow: 0px 0px 8px 0px #00ffbf;
+    }
+
+    nav {
+      float: right;
+    }
+
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin-right: 25px;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-left: 40px;
+      margin-right: 40px;
+      font-family: open sans;
+      padding-top: 20px;
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      font-size: 17px;
+    }
+
+    nav a:hover {
+      color: #00ffbf;
+    }
+
+    nav a::before {
+      content: '';
+      display: block;
+      background-color: #00ffbf;
+      height: 2px;
+      position: absolute;
+      width: 0%;
+      top: 0;
+      transition: all ease-in-out 100ms;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+
+    textarea {
+      width: 640px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: none;
+      position: fixed;
+    }
+
+    .logo {
+      height: 65px;
+      float: left;
+      margin-left: 25px;
+      padding: 10px 0;
+    }
+
+    .form-style {
+      background-color: #2a3030;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      color: #ccc;
+      top: 120px;
+    }
+
+    .form-style:focus {
+      background-color: #1e2424;
+      box-shadow: 1px 4px 8px 1px #00ffbf;
+    }
+
+    .logo_button {
+      height: 45px;
+      float: left;
+      padding: 0;
+    }
+
+    .card {
+
+      width: 48%;
+      height: 150PX;
+      background: #1e2424;
+      margin-bottom: 5%;
+      border-radius: 2px;
+      position: relative;
+      top: -100px;
+      left: 50%;
+      overflow: auto;
+      resize: both;
+      text-overflow: wrap;
+      padding: 10px;
+      resize: none;
+      font-family: 'Montserrat', sans-serif;
+      color: #ccc;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+      background: #00ffbf;
+      color: #000000;
+    }
+
+    .date {
+      font-size: 10px;
+      margin-bottom: 9px;
+    }
+
+    .button {
+      background-color: #1e2424;
+      border: none;
+      padding: 12px 30px;
+      position: fixed;
+      left: 19%;
+      border-radius: 8px;
+      box-shadow: 1px 2px 4px 1px #00ffbf;
+      top: 580px;
+
+    }
+
+    .button:hover {
+      background: #1e2424;
+      box-shadow: 1px 4px 8px 1px#00ffbf;
+      transform: scale(1.005);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <a href=""><img src="{% static 'pinit_logo.png' %}" alt="logo" class="logo"></a>
+
+      <nav>
+        <ul>
+          <li><a href="">Home</a></li>
+          <li><a href="about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <br /><br />
+  <main style="padding-top:20px;">
+
+
+    <div class="dislay">
+      {% if new_post %}
+      <div class="container">
+        {% else %}
+        <form method="post" style="height:150px; width: 50%; padding-left: 50px;font-family:Arial;font-size: 0;">
+          <textarea name="text" cols="50" rows="20" placeholder="Post anonymously..." class="form-style" required=""
+            id="id_text"></textarea>
+          {% csrf_token %}
+          <button type="submit" class="button">
+            <img src="{% static 'pinit_logo.png' %}" alt="logo" class="logo_button">
+          </button>
+
+        </form>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="display">
+      {% for i in list %}
+      <div class="card">
+        <div class="date">
+          {{i.created_date}}
+          ,&nbsp;&nbsp;&nbsp;
+          {{i.created_time}}
+        </div>
+        {{i.text}}
+        <br />
+        <br />
+      </div>
+      {% endfor%}
+  </main>
+</body>
+
+</html>

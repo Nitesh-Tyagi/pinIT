@@ -1,0 +1,139 @@
+<!-- {{ request.user.is_authenticated }} -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+  <title>pinIT - About Us</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      background-color: #2a3030;
+    }
+
+    .container {
+      width: 85%;
+      margin: 0 auto;
+    }
+
+    header::after {
+      content: ' ';
+      display: table;
+      clear: both;
+    }
+
+    .header {
+      background: #1e2424;
+      margin-left: 0;
+      padding-left: 0;
+      position: fixed;
+      z-index: 1;
+      width: 100%;
+      box-shadow: 0px 0px 8px 0px #00ffbf;
+    }
+
+    nav {
+      float: right;
+      position: relative;
+    }
+
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      margin-right: 25px;
+    }
+
+    nav li {
+      display: inline-block;
+      margin-left: 40px;
+      margin-right: 40px;
+      font-family: open sans;
+      padding-top: 20px;
+      position: relative;
+    }
+
+    nav a {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: rgb(255, 255, 255);
+      font-size: 17px;
+    }
+
+    nav a:hover {
+      color: #00ffbf;
+    }
+
+    nav a::before {
+      content: '';
+      display: block;
+      background-color: #00ffbf;
+      height: 2px;
+      position: absolute;
+      width: 0%;
+      top: 0;
+      transition: all ease-in-out 100ms;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    .logo {
+      height: 65px;
+      float: left;
+      margin-left: 25px;
+      padding: 10px 0;
+    }
+
+    .content {
+      color: #ccc;
+      margin: 8% 2.5%;
+      padding: 15% 8%;
+      background-color: #1e2424;
+      font-size: 20px;
+      position: absolute;
+      width: 95%;
+      text-align: center;
+    }
+
+    .img {
+      height: 80px;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="/"><img src="{% static 'pinit_logo.png' %}" alt="logo" class="logo"></a>
+
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="content">
+    <p>
+      This forum is made for you to post your mind out, without the fear of having your personal information getting
+      leaked. <br>
+      We ask for no form of sign-up or have any portal that may ask for you personal information. <br> <br>
+      Got something on your mind? <br>
+      <img src="{% static 'pinit_logo.png' %}" alt="logo" class="img">
+    </p>
+  </div>
+</body>
+
+</html>
